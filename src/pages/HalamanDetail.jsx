@@ -1,10 +1,30 @@
-import { useParams, useNavigate} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { supabase } from "../supabase";
 function HalamanDetail(){
     const {id} = useParams(); //ambil id dri url/detail/3
     const navigate= useNavigate(); //untuk tombol kembali
-    //ambil data dari local storage
-    const data = JSON.parse(localStorage.getItem('penggunData')) || [];
-    const orang = data.find(o => o.id === Number(id));
+    // ✅ TAMBAH INI
+const [orang, setOrang] = useState(null);
+const [loading, setLoading] = useState(true);
+
+useEffect(() => {
+    const ambilData = async () => {
+        const { data, error } = await supabase
+            .from('pengguna')
+            .select('*')
+            .eq('id', Number(id))
+            .single();
+
+        if (error || !data) {
+            setOrang(null);
+        } else {
+            setOrang(data);
+        }
+        setLoading(false);
+    };
+    ambilData();
+}, [id]);
      
     
 

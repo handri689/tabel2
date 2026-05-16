@@ -201,8 +201,8 @@ function TabelPengguna() {
   return (
     <div className={`min-h-screen bg-fixed p-5 transition-all duration-300 ${
       darkMode
-        ? 'bg-gradient-to-br from-indigo-950 via-purple-950 to-violet-950'
-        : 'bg-gradient-to-br from-white via-purple-50 to-white'
+        ? 'bg-linear-to-br from-indigo-950 via-purple-950 to-violet-950'
+        : 'bg-linear-to-br from-white via-purple-50 to-white'
     }`}>
 
       {/* NOTIFIKASI */}

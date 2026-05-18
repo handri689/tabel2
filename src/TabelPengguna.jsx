@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from 'react';
 import { supabase } from './supabase';
 import jsPDF from 'jspdf';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { X } from "lucide-react";
 
 // ============================================================
 // KOMPONEN UTAMA
@@ -270,7 +269,7 @@ function Search(props) {
     exportCSV, exportPDF, logout} = props;
 
   return (
-    <div className="flex flex-col md:flex-row md:items-center md:justyfy-between gap-3">
+    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
       {[
         { label: 'Semua',       value: 'semua' },
         { label: 'Aktif',       value: 'aktif' },
@@ -330,6 +329,16 @@ function Search(props) {
         📄 Export PDF
       </button>
      <div className="flex gap-3 mt-2 mb-4">
+    <button
+        onClick={() => setDarkMode(!darkMode)}
+        className={`px-4 py-1.5 rounded-lg text-sm font-semibold ml-auto transition-colors ${
+          darkMode
+            ? 'bg-yellow-400 text-indigo-900 hover:bg-yellow-300'
+            : 'bg-indigo-900 text-white hover:bg-indigo-800'
+        }`}
+      >
+        {darkMode ? '☀️ Light' : '🌙 Dark'}
+      </button>
   <button
     onClick={logout}
     className="
@@ -343,19 +352,9 @@ function Search(props) {
   >
    Logout
   </button>
-
-   <button
-        onClick={() => setDarkMode(!darkMode)}
-        className={`px-4 py-1.5 rounded-lg text-sm font-semibold ml-auto transition-colors ${
-          darkMode
-            ? 'bg-yellow-400 text-indigo-900 hover:bg-yellow-300'
-            : 'bg-indigo-900 text-white hover:bg-indigo-800'
-        }`}
-      >
-        {darkMode ? '☀️ Light' : '🌙 Dark'}
-      </button>
 </div>
-    </div>
+</div>
+
   );
 }
 

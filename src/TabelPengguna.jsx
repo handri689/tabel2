@@ -270,7 +270,7 @@ function Search(props) {
     exportCSV, exportPDF, logout} = props;
 
   return (
-    <div className="flex gap-2 mb-4 items-center flex-wrap p-1">
+    <div className="flex flex-col md:flex-row md:items-center md:justyfy-between gap-3">
       {[
         { label: 'Semua',       value: 'semua' },
         { label: 'Aktif',       value: 'aktif' },
@@ -320,16 +320,7 @@ function Search(props) {
         + Tambah Data
       </button>
 
-      <button
-        onClick={() => setDarkMode(!darkMode)}
-        className={`px-3 py-1.5 rounded-lg text-sm font-semibold ml-auto transition-colors ${
-          darkMode
-            ? 'bg-yellow-400 text-indigo-900 hover:bg-yellow-300'
-            : 'bg-indigo-900 text-white hover:bg-indigo-800'
-        }`}
-      >
-        {darkMode ? '☀️ Light' : '🌙 Dark'}
-      </button>
+      
 
       <button onClick={exportCSV} className="px-4 py-1.5 bg-green-500 text-white rounded-lg text-sm font-semibold hover:bg-green-600 transition-colors">
         📥 Export CSV
@@ -338,24 +329,32 @@ function Search(props) {
       <button onClick={exportPDF} className="px-4 py-1.5 bg-red-500 text-white rounded-lg text-sm font-semibold hover:bg-red-600 transition-colors">
         📄 Export PDF
       </button>
-     <button
-  onClick={logout}
-  title="Logout"
-  className="
-    w-10 h-10
-    flex items-center justify-center
-    bg-white
-    border border-gray-200
-    text-red-500
-    rounded-full
-    shadow-sm
-    hover:bg-red-500
-    hover:text-white
-    transition-all duration-300
-  "
->
-  ✕
-</button>
+     <div className="flex gap-3 mt-2 mb-4">
+  <button
+    onClick={logout}
+    className="
+      flex items-center gap-2
+      px-4 py-2
+      bg-red-500 text-white
+      rounded-xl
+      hover:bg-red-600
+      transition-all duration-300
+    "
+  >
+   Logout
+  </button>
+
+   <button
+        onClick={() => setDarkMode(!darkMode)}
+        className={`px-4 py-1.5 rounded-lg text-sm font-semibold ml-auto transition-colors ${
+          darkMode
+            ? 'bg-yellow-400 text-indigo-900 hover:bg-yellow-300'
+            : 'bg-indigo-900 text-white hover:bg-indigo-800'
+        }`}
+      >
+        {darkMode ? '☀️ Light' : '🌙 Dark'}
+      </button>
+</div>
     </div>
   );
 }
@@ -396,7 +395,7 @@ function Tabel(props) {
 
   return (
     <div className="overflow-x-auto rounded-xl shadow">
-      <table className="w-full border-collapse text-sm">
+      <table className="min-w-full bg-white">
         <thead className={darkMode ? 'bg-blue-950 text-white' : 'bg-black text-white'}>
           <tr className="text-left">
             <th className="px-3 py-2 w-10 border border-gray-300">NO</th>

@@ -70,7 +70,9 @@ function TabelPengguna() {
   const [filter, setFilter]         = useState('semua');
   const [searchInput, setSearchInput] = useState('');
   const [search, setSearch]           = useState('');
-
+const logout = async () =>{
+await supabase.auth.signOut();
+};
   const dataFiltered = data.filter(orang => {
     const cocokFilter =
       filter === 'aktif' ? orang.Aktif === true :
@@ -218,6 +220,7 @@ function TabelPengguna() {
         search={search} setSearch={setSearch}
         darkMode={darkMode} setDarkMode={setDarkMode}
         exportCSV={exportCSV} exportPDF={exportPDF}
+        logout={logout}
       />
 
       <Statistik
@@ -263,7 +266,7 @@ function Search(props) {
   const navigate = useNavigate();
   const { filter, setFilter, searchInput, setSearchInput,
     search, setSearch, darkMode, setDarkMode,
-    exportCSV, exportPDF } = props;
+    exportCSV, exportPDF, logout} = props;
 
   return (
     <div className="flex gap-2 mb-4 items-center flex-wrap p-2">
@@ -333,6 +336,11 @@ function Search(props) {
 
       <button onClick={exportPDF} className="px-4 py-1.5 bg-red-500 text-white rounded-lg text-sm font-semibold hover:bg-red-600 transition-colors">
         📄 Export PDF
+      </button>
+      <button
+      onClick={logout}
+      className="px-4 py-1.5 bg-black text-white font-semibold rounded-lg text-sm hover:bg-gray-800 transition-colors">
+        🚪 Logout
       </button>
     </div>
   );

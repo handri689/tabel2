@@ -9,7 +9,7 @@ function HalamanLogin(){
 const login = async ()=> {
     setError('');
     setLoading(true);
-const { error} = await supabase.auth.singnInWithPassword({
+const { error} = await supabase.auth.signInWithPassword({
     email: form.email,
     password: form.password,
 
@@ -29,7 +29,7 @@ return(
      {/* logo    */}
      <div className="text-center mb-8">
         <div className="w-14 h-14 bg-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <svg width="28" heighat="28" viewBox="0 0 24 24" fill= "none" stroke= "white" stroke-width="2">
+            <svg width="28" heighat="28" viewBox="0 0 24 24" fill= "none" stroke= "white" strokeWidth="2">
                 <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
                 <line xl="3" y1="6" x2="21" y2="6"/>
                 <path d="M16 10a4 4 0 0 1-8 0"/>
@@ -47,7 +47,7 @@ return(
             <line  xl= "12" y1="8" x2="12" y2="12"/>
             <line xl="12" y1="16" x2="12.01" y2="16"/>
             </svg>
-            {eror}
+            {error}
             </div>
      )}
         {/* form */}
@@ -69,7 +69,7 @@ return(
             </label>
             <input
             type="password"
-            placeholder="............"
+            placeholder="12345mkvalas"
             value={form.password}
             onChange={e => setForm({ ...form,password: e.target.value})}
             onKeyDown={e =>e.key === 'enter' && login()}

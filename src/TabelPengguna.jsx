@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { supabase } from './supabase';
 import jsPDF from 'jspdf';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { X } from "lucide-react";
 
 // ============================================================
 // KOMPONEN UTAMA
@@ -269,7 +270,7 @@ function Search(props) {
     exportCSV, exportPDF, logout} = props;
 
   return (
-    <div className="flex gap-2 mb-4 items-center flex-wrap p-2">
+    <div className="flex gap-2 mb-4 items-center flex-wrap p-1">
       {[
         { label: 'Semua',       value: 'semua' },
         { label: 'Aktif',       value: 'aktif' },
@@ -337,11 +338,24 @@ function Search(props) {
       <button onClick={exportPDF} className="px-4 py-1.5 bg-red-500 text-white rounded-lg text-sm font-semibold hover:bg-red-600 transition-colors">
         📄 Export PDF
       </button>
-      <button
-      onClick={logout}
-      className="px-4 py-1.5 bg-black text-white font-semibold rounded-lg text-sm hover:bg-gray-800 transition-colors">
-        🚪 Logout
-      </button>
+     <button
+  onClick={logout}
+  title="Logout"
+  className="
+    w-10 h-10
+    flex items-center justify-center
+    bg-white
+    border border-gray-200
+    text-red-500
+    rounded-full
+    shadow-sm
+    hover:bg-red-500
+    hover:text-white
+    transition-all duration-300
+  "
+>
+  ✕
+</button>
     </div>
   );
 }

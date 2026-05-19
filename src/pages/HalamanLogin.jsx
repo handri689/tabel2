@@ -57,7 +57,7 @@ return(
             </label>
             <input
             type= "email"
-            placeholder="handryturino8@gmail.com"
+            placeholder="surabaya@gmail.com"
             value={form.email}
             onChange={e => setForm({ ...form,email: e.target.value})}
             className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition all bg-gray-50"/>
@@ -69,7 +69,7 @@ return(
             </label>
             <input
             type="password"
-            placeholder="12345mkvalas"
+            placeholder="12345kkkkk"
             value={form.password}
             onChange={e => setForm({ ...form,password: e.target.value})}
             onKeyDown={e =>e.key === 'enter' && login()}

@@ -6,21 +6,32 @@ function HalamanLogin(){
     const [form,setForm] = useState ({email: '', password: ''});
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-const login = async ()=> {
-    setError('');
-    setLoading(true);
+const login = async ()=> { //membuat fungsi login yang bersifat async (asynchronous), karena akan menunggu proses dari supbase 
+    setError('');   //reset pesan error dulu setiap kali tombol login diklik, supaya eror lama hilang 
+    setLoading(true);  //set loading jadi true biasanya dipakai untuk disable tombol atau tampilan spinner saat proses login berjalan 
+
+
+
+
+//memanggil fungsi login dari supbase dengan email&dan password yang diisi user di form. await berarti menunggu sampai supbase selesai memproses. hasilnya di-destructure, hanya ambil erornya saja 
 const { error} = await supabase.auth.signInWithPassword({
     email: form.email,
     password: form.password,
 
 });
+
+
+//kalau supbase menggambil eror (login gagal): 
+// tampilkan pesan "email atau password salah", 
+// set loading kembali false . 
+// returun akanmenghentikan fungsi agar tidak lanjut kebawah 
 if (error)
 {
     setError('Email atau Password Salah');
     setLoading(false);
     return;
 }
-navigate('/');
+navigate('/'); //kalau login berhasil (tidak ada eror), arahkan user ke halaman utama /.
 };
 return(
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">

@@ -469,6 +469,12 @@ function Tabel(props) {
               <td className="px-3 py-2 border border-gray-300">
                 <div className="flex gap-2 justify-center">
                   <button
+    onClick={() => navigate(`/absensi/${orang.id}`)}
+    className="bg-green-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors"
+  >
+    📋 Absensi
+  </button>
+                  <button
                     onClick={() => navigate(`/detail/${orang.id}`)}
                     className="bg-blue-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold hover:bg-blue-600 transition-colors"
                   >
@@ -480,6 +486,12 @@ function Tabel(props) {
                   >
                     🗑 Hapus
                   </button>
+                  <button
+    onClick={() => navigate(`/rekap-siswa/${orang.id}`)}
+    className="bg-purple-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold hover:bg-purple-600 transition-colors"
+>
+    📊 Rekap
+</button>
                 </div>
               </td>
 

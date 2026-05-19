@@ -5,25 +5,34 @@ function HalamanDetail(){
     const {id} = useParams(); //ambil id dri url/detail/3
     const navigate= useNavigate(); //untuk tombol kembali
     // ✅ TAMBAH INI
-const [orang, setOrang] = useState(null);
-const [loading, setLoading] = useState(true);
+const [orang, setOrang] = useState(null); //membuat state orang untuk menyimpan data 1 orang dari database. awalnya null karena data belum diambil 
+const [loading, setLoading] = useState(true); //setelah loading awalnya true, artinya anggap sedang loading dulu sampai data selesai di ambil
 
+
+
+//useEffect akan otomatis jalan saat komponen pertamakali muncul. [id] artinya kalau nilai id berubah, useEffect akan jalan ulang untuk ambil data orang yang berbeda
 useEffect(() => {
-    const ambilData = async () => {
+    const ambilData = async () => { //membuat fungsi ambil data yang async, karena akan menunggu response dari supbase
         const { data, error } = await supabase
-            .from('pengguna')
-            .select('*')
-            .eq('id', Number(id))
-            .single();
+            .from('pengguna') //dari tabel pengguna 
+            .select('*') //ambil semua kolo 
+            .eq('id', Number(id)) //where id = id (dikonversi ke angka )
+            .single(); //ambil 1 baris saja
+  //query ke supbase untuk mencari 1 data di tabel pengguna berdasarkan id. hasilnya bisa data (berhasil) atau error (gagal).
 
+
+
+
+  //kalau gagal atau data tidak ada -> orang diisi null
+  //kalau berhasil -> orang diisi dengan data dari database
         if (error || !data) {
             setOrang(null);
         } else {
             setOrang(data);
         }
-        setLoading(false);
+        setLoading(false); //apapun hasilnya (berhasil atau gagal), loading dimatikan karena proses sudah selesai 
     };
-    ambilData();
+    ambilData(); //memanggil fungsi ambil data aga benar  benar dieksekusi. (karena mendefinisikan fungsi saja tidak cukup, harus dipanggil)
 }, [id]);
      
     
